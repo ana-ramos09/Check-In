@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My App</title>
+
+    <link href="./My App_files/css2" rel="stylesheet">
+
+    <script src="./My App_files/polyfill.min.js"></script>
+
+    <!-- update the version number as needed -->
+    <script defer="" src="./My App_files/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer="" src="./My App_files/firebase-auth.js"></script>
+    <script defer="" src="./My App_files/firebase-database.js"></script>
+    <script defer="" src="./My App_files/firebase-storage.js"></script>
+    <script defer="" src="./My App_files/firebase-remote-config.js"></script>
+    <script defer="" src="./My App_files/firebase-performance.js"></script>
+    
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer="" src="./My App_files/init.js"></script>
+
+    
+  <style type="text/css">body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #4E8098;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+</style><style type="text/css">html,
+body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+}
+
+* {
+  font-family: 'Prata', serif;
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  list-style: none;
+  /* vertical-align: baseline; */
+  box-sizing: border-box;
+  z-index: 0;
+  outline: none;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border: 3px solid yellow;
+  width: 100%;
+  height: 500px;
+  padding: 15px;
+}
+
+.lists-container {
+  width: 38%;
+  height: 450px;
+  border: 2px solid red;
+}
+
+.map-container {
+  width: 60%;
+  height: 450px;
+  border: 2px solid red;
+  background-image: url(/static/media/earthbynight.1fc4e71f.jpg);
+  background-position: center;
+  background-size: contain;
+}</style><style type="text/css">.header-class {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #0B032D;
+    height: 2.6em;
+    width: 100%;
+    color: whitesmoke;
+    font-size: larger;
+}
+
+</style><style type="text/css">.new-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 10em;
+    border: 3px solid #74546A;
+    /* margin: 1.2em; */
+}
+
+.new-list-container > p {
+    color: whitesmoke;
+    font-size: 1.3em;
+    margin: 5px 0px 0px 0px;
+}
+
+.create-list-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 1px solid greenyellow;
+    width: 100%;
+}
+
+.new-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 10em;
+    /* padding: 0.2; */
+    /* background-color: blueviolet; */
+}
+
+.new-list-name {
+    width: 100%;
+    /* min-width: 20%; */
+    height: 2em;
+    border-radius: 10px;
+    border: none;
+    padding-left: 5px;
+}
+
+.new-list-location {
+    width: 100%;
+    /* min-width: 20%; */
+    height: 2em;
+    margin: 1em 0;
+    border-radius: 10px;
+    border: none;
+    padding-left: 5px;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-list {
+    height: 4em;
+    width: 4em;
+    margin-left: 15px;
+    /* align-self: flex-end; */
+    border-radius: 25px;
+    border: none;
+    padding-left: 5px;
+    cursor: pointer;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAABGCAYAAABxLuKEAAAABmJLR0QAkwBJABwErwy/AAAACXBIWXMAAA5KAAAOSgEUkc52AAAFeElEQVR42u2c3UscVxjGfzPORtaVXpiUJjUSEhpK0kgMvW0pBNqgkAtBTEMgQWL7N3iV/6IXFnoVCJR+UJFqL8Re2NsSgk3XNsVSyEcDjYqpXc2uTi/OezyTrR+zuzPnrDt9YNhdZ+acZx7PnPO+533P8bCEIAjaKpVKL3ABOA+cBrqBLjna5dINYEmOR8AD4B5wNwiC+UqlsmmLc2rwPO8wMAp8BSwDYYPHspQ1KmWnxz3pAvP5vFcqlfqBj4EBIFd1yZ/AfeBn4HfgL2AVWJfz7cArwBHgJHAGOAccqyqnDEwBn+bz+elSqRSmKVTdaGtrC4ARoMjL/+XnwBdy7o0GqjgF3AA+FyGjdRSBEeHQVLgMLESIbgGzwFXP8zqSrkzKHAZmgM1IvQvCxTl6gMkIsU3gDtBnkUMvcBuoRHhMCjcnuAasRMjMCElXOAtMR/isCEc78H2/HRiPEHgKfOhQkGoMAY8j/MaFc3qQIXIuUukU8JprJXbg+SowEeE5l+bw3oMZcbaAWx0dHYkP90mhs7PTA8YwnXORFPqdHmBRKlgHrrh+8BowCKwJ98XExJEmqFvK38D7rp+0DryHsqdCoNjwayWdlu5T1lMW5aYcaYqjW85cox2yHn22SPf1OSp1bMn3tDCI6XPG6y3kGqZXv5UiWYATkbpOpFzXWKSumu2cHozxNmVh9LEmjIxWeihfocbOWJv5T7Fjp9hsMdrO0UbgZNz7LkdI2rJorQojGIrUubfjKW679pJnLBF0JQwY32phvymLEYyXbNMhdCXMWYxXPrLjFfl83sMYcncsknMpDKgpixAoigb/wQDGZunLkDC9GNtmYKcLvpGTs5aJuRYGVH8aigYG4ju8kJNXMyjMsNT9otqPGpUTz9OYo212YeSZ9QT7KIAv5/rl87swDP9xIIxTyDNPR7XwgyBoAy7KH6dck3QI/ewXRRP6MM24kbhPI3Ddx4CKW2kOfT4qlgwqQvibI1LNgEXgiXy/4KMC7KDCplnHT/J53kdlHYCKJWcdRfk87aNSMUAF2LMOrUG3j8pNAZV1kHVoDboCjDCrNRRwFJPokwSO7/I9CWygBpY40Bp0gcozCYFLMW++iXI0G00CsnVsET/6cEnuKfsxb8gcAlRTC4j/anwGfFvD9XFwHPhBvr8DPEyw7Fpepe08wACVBFhApXfFRdyK6sFD4I8Uy98LWoMlH3gmP444ItNM0Bos+Zhme9I1qyaA1uCRD/wiP864ZtUE0Bo88DH+wTnXrJoAWoN7PvCj/DiGcr2zilOYXOK7fi6Xu48amQDedc3OIfSzrwRBMO+Xy2Wdkwu7hA8yAv3ss9H1CjoCufr/ZLiaDNcnulAWYogKJWRKGPYInwB8if1gfrMIs3PATaA9S9sBfdfC7B2iLRQKHsqmCVGB7qwIs29QH+C6XFRBpUi0ujD7p4GAWp6HihaEmMhcKwsTO3EIVIhSkxxqYWHip5pF8LXc8FgS+VpKmHqTE0GFVJ7JjROSAtoSwjSazgoqE1yTHWsVYWgwAVrjE4xtM5gi2QOVMo/v+4eA76WgNdRChbRwoBZZaD9qHrNUOE1x0hQluWU5EbwO/IppOWm+VkkjnYVcVeLolrMJjFkYreqGraV/wPZrpfucEJiwZOfUytPqYlFgu0PWo1WIMpRsWchxYH95cRWuYIxA7VvZdDyr4XZBehW6Me6D9spvY3c+p+m2MIiiH+OV6855BhjO6qYX25Api+uYyS59rKK2NrlBY3Erq9ukJD7cFgoFb21t7QPgI9R/71DVJU9EvCIvb6yzIedba2OdnSDD+whqY51oR13vscxB3YppN+RyOb9cLr8FvI1qAW+iEoYO04Sbd/0LNd459k7ZUd4AAAASdEVYdEVYSUY6T3JpZW50YXRpb24AMYRY7O8AAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-size: contain;
+}   
+</style><style type="text/css">.list {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    border: 1px solid #74546A;
+    width: 300px;
+    height: 320px;
+}
+
+.list-header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #843B62;
+    width: 100%;
+    height: 40px;
+    /* padding: 5px; */
+    font-size: 1.5em;
+}
+
+.list-header-container > p {
+    width: 90%;
+    height: 40px;
+    padding: 5px 0px 0px 10px;
+    color: whitesmoke;
+}
+
+.list-close {
+    background-color: transparent;
+    /* color: tomato; */
+    color: whitesmoke;
+    cursor: pointer;
+    width: 10%;
+    height: 40px;
+}
+
+.list-close:hover {
+    color:blue;
+}
+
+.list-checklist-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1;
+    font-size: medium;
+    border: 1px solid black;
+    margin-top: 15px;
+}
+
+.list-checklist-container > input {
+    margin: 10px;
+}
+
+.list-checklist {
+    background-color: burlywood;
+    /* color: tomato; */
+    color: black;
+    cursor: pointer;
+}
+
+.list-save {
+    background-color: transparent;
+    /* color: tomato; */
+    color: black;
+    cursor: pointer;
+}
+
+</style><script charset="utf-8" src="./My App_files/main.72263864dc7eaa773cac.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.b0f2daf0b1585bda5b09.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.6580ecc17c36c2cc806d.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.1e95d16cd2ce5df7008e.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.289f95f4a5d5230dfb26.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.7a68e60b9876df95fcdb.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.8e12fea57fbf2b2eb8a9.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.bfcf654fde13fb70824f.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.10c28d6a59746971a081.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.8dfa2adb8de28407c0f8.hot-update.js"></script><script charset="utf-8" src="./My App_files/main.193a592b48a54e73863d.hot-update.js"></script></head>
+  <body data-new-gr-c-s-check-loaded="14.977.0">
+    <div id="root"><div class="App"><div class="header-class" id="header">My Daily Views</div><div class="new-list-container"><p>Create a New List</p><div class="create-list-container"><div class="new-list"><input class="new-list-name" placeholder="Name" value=""><input class="new-list-location" placeholder="City" value=""></div><div class="button-container"><button class="create-list" id="create-new-list" title="Create a New List"></button></div></div></div><div class="main-container"><div class="lists-container"><div class="list"><div class="list-header-container"><p class="list-title">Name</p><button class="list-close" title="Close List">X</button></div><button class="list-checklist" title="Add a Checklist">Add Checklist!</button><div class="list-checklist-container"><input type="checkbox" value="Amora"><input type="checkbox" value="Blueberry"><input type="checkbox" value="Cereja"><input type="checkbox" value="Uva"><input type="checkbox" value="Pitanga"><input type="checkbox" value="Pitanga"></div><button class="list-save" title="Save List">SAVE</button></div></div><div id="map" class="map-container"></div></div></div></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script>
+  <script src="./My App_files/bundle.js"></script><script src="./My App_files/1.chunk.js"></script><script src="./My App_files/main.chunk.js"></script><script src="./My App_files/main.97a29d635679e666eb8c.hot-update.js"></script>
+
+</body></html>

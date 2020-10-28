@@ -1,0 +1,12 @@
+.header-class {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #0B032D;
+    height: 2.6em;
+    width: 100%;
+    color: whitesmoke;
+    font-size: larger;
+}
+
