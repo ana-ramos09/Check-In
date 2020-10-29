@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux';
-import appReducer from './app';
-import deleteTaskReducer from './delete';
+import { combineReducers } from "redux";
+import appReducer from "./app";
 
 const allReducers = combineReducers({
-    deleteTask: deleteTaskReducer,
-    app: appReducer
+  app: appReducer,
 });
 
 export default allReducers;
