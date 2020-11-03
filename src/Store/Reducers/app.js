@@ -1,10 +1,10 @@
-import State from "ol/source/State";
+// import State from "ol/source/State";
 
 export const initialState = {
   cityDetail: {
     name: "Parques de Itabira",
     location: "Itabira",
-    points: [{ done: true, value: "Pracinha Redonda" }],
+    points: [{ done: false, value: "Pracinha Redonda" }],
   },
 };
 
@@ -25,7 +25,31 @@ const appReducer = (state = initialState, action) => {
           ),
         },
       };
-
+    case "ADD_TASK":
+      return {
+        ...state,
+        cityDetail: {
+          ...state.cityDetail,
+          points: [{ done: false, value: "" }, ...state.cityDetail.points],
+        },
+      };
+    case "EDIT_TASK":
+      return {
+        ...state,
+        cityDetail: {
+          ...state.cityDetail,
+          points: state.cityDetail.points.map((item, index) => {
+            if (index === action.payload.index) {
+              return {
+                done: action.payload.done,
+                value: action.payload.value,
+              };
+            } else {
+              return item;
+            }
+          }),
+        },
+      };
     default:
       return state;
   }

@@ -4,7 +4,14 @@ import "./style.css";
 const Task = (props) => (
   <div className="task-container">
     <div className="checklist-container">
-      <input className="check" type="checkbox" value={props.done}></input>
+      <input
+        className="check"
+        type="checkbox"
+        value={props.done}
+        onChange={(e) =>
+          props.onUpdate(props.index, JSON.parse(e.target.value), props.value)
+        }
+      ></input>
       <input
         className="task"
         type="text"

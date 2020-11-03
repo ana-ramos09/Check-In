@@ -4,7 +4,7 @@ import Task from "../Task/Task.js";
 import { useEffect } from "react";
 import { saveList } from "../../firebaseFuncs.js";
 import { useSelector, useDispatch } from "react-redux";
-import { loadList, deleteTask, refreshList } from "../../Store/Actions";
+import { loadList, deleteTask, addTask, editTask } from "../../Store/Actions";
 import { firestore } from "../../firebaseUtils";
 
 const List = (props) => {
@@ -14,13 +14,15 @@ const List = (props) => {
   const pointsList = cityDetail.points;
 
   const onUpdate = (index, done, value) => {
-    pointsList[index] = { done, value };
-    // TODO: criar ação específica para update
-    dispatch(loadList({ ...cityDetail, points: pointsList }));
+    dispatch(editTask({ index: index, done: done, value: value }));
   };
 
   const onDelete = (index) => {
     dispatch(deleteTask(index));
+  };
+
+  const addPoint = () => {
+    dispatch(addTask());
   };
 
   const loadFirestoreList = (listName, listLocation) => {
@@ -37,12 +39,6 @@ const List = (props) => {
   useEffect(() => {
     loadFirestoreList("Parques", "São Paulo");
   }, []);
-
-  //Get all the 'pointsList' state content that already exist and add in a new point;
-  const addPoint = () => {
-    const newArray = [{ done: "no", point: "" }, ...pointsList];
-    dispatch(loadList({ ...cityDetail, points: newArray }));
-  };
 
   const callSaveList = () => {
     saveList(props.listName, props.listLocation, pointsList);
