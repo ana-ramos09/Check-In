@@ -28,3 +28,11 @@ export const editTask = (data) => {
     payload: data,
   };
 };
+
+export const loadLists = (data) => {
+  return {
+    type: "LOAD_LISTS",
+    payload: data,
+  };
+};
+

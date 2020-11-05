@@ -11,6 +11,12 @@ const AddList = (props) => {
     props.setListlocation(e.target.value);
   };
 
+  const callFunctions = () => {
+    callCreateList();
+    props.updateLists();
+
+  }
+
   const callCreateList = () => {
     createList(props.listName, props.listLocation);
   };
@@ -32,7 +38,7 @@ const AddList = (props) => {
           ></input>
         </div>
         <div className="button-container">
-          <button onClick={callCreateList} title="Create a New List"></button>
+          <button onClick={callFunctions} title="Create a New List"></button>
         </div>
       </div>
     </div>

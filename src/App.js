@@ -1,36 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./Components/Header/Header.js";
 import AddList from "./Components/Add/AddList.js";
 import List from "./Components/List/List.js";
-// import { useDispatch, useSelector } from 'react-redux';
+import MiniList from "./Components/miniList/miniList.js";
+import { useDispatch, useSelector } from "react-redux";
+import { firestore } from "./firebaseUtils.js";
+import { loadLists } from "./Store/Actions/index.js";
 
 function App() {
-  const [listName, setListName] = useState("Parques");
-  const [listLocation, setListlocation] = useState("São Paulo");
+	const dispatch = useDispatch();
 
-  return (
-    <div className="App">
-      <Header />
-      <AddList
-        listName={listName}
-        setListName={setListName}
-        listLocation={listLocation}
-        setListlocation={setListlocation}
-      />
-      <div className="main-container">
-        <div className="lists-container">
-          <List
+	const [listName, setListName] = useState("Parques");
+	const [listLocation, setListlocation] = useState("São Paulo");
+
+	const cities = useSelector((state) => state.main.cities);
+
+	useEffect(() => {
+		loadAllLists()
+	},[])
+
+	const loadAllLists = () => {
+		firestore
+			.collection("lists")
+			.get()
+			.then((resp) => resp.docs.map((item) => item.data()))
+			.then((citiesArray) => dispatch(loadLists(citiesArray)))
+	};
+
+	return (
+		<div className="App">
+			<Header />
+			<AddList
+				listName={listName}
+				setListName={setListName}
+				listLocation={listLocation}
+				setListlocation={setListlocation}
+				updateLists={loadAllLists}
+			/>
+			<div className="main-container">
+				<div className="lists-container">
+					{cities.map((city, index) => (
+						<MiniList
+							key={index}
+							index={index}
+							location={city.location}
+							title={city.name}
+							points={city.points}
+						/>
+					))}
+
+					{/* <List
             listName={listName}
             setListName={setListName}
             listLocation={listLocation}
             setListlocation={setListlocation}
-          />
-        </div>
-        <div id="map" className="map-container"></div>
-      </div>
-    </div>
-  );
+          /> */}
+				</div>
+				<div id="map" className="map-container"></div>
+			</div>
+		</div>
+	);
 }
 
 export default App;

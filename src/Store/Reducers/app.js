@@ -1,5 +1,3 @@
-// import State from "ol/source/State";
-
 export const initialState = {
   cityDetail: {
     name: "Parques de Itabira",
