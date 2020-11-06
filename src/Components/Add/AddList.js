@@ -23,6 +23,7 @@ const AddList = (props) => {
 
   return (
     <div className="new-list-container">
+      <br></br>
       <p>Create a New List</p>
       <div className="create-list-container">
         <div className="new-list">

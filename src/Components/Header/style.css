@@ -4,9 +4,17 @@
     align-items: center;
     flex-direction: row;
     background-color: #0B032D;
-    height: 2.6em;
+    height: 2.8em;
     width: 100%;
     color: whitesmoke;
     font-size: larger;
 }
 
+.header-class > div {
+    width: 25%;
+    height: 100%;
+    background-image: url("../../images/checkinviolet.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

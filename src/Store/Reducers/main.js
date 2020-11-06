@@ -1,14 +1,14 @@
 export const initialStateCities = {
 	cities: [
 		{
-			name: "Parques de Itabira",
-			location: "Itabira",
-			points: [{ done: false, value: "Pracinha Redonda" }],
+			name: "",
+			location: "",
+			points: [{ done: false, value: "" }],
 		},
 		{
-			name: "Parques de Itabira",
-			location: "Itabira",
-			points: [{ done: false, value: "Pracinha Redonda" }],
+			name: "",
+			location: "",
+			points: [{ done: false, value: "" }],
 		},
 	],
 };
@@ -18,7 +18,13 @@ const mainReducer = (state = initialStateCities, action) => {
 		case "LOAD_LISTS":
 			return {
 				...state,
-				cities: action.payload
+				cities: action.payload,
+			};
+		case "DELETE_LISTS":
+			return {
+				...state,
+                cities: state.cities.filter(
+                    (list, index) => index !== action.payload)
 			};
 		default:
 			return state;
