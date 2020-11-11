@@ -1,13 +1,13 @@
-import MiniList from "./Components/miniList/miniList.js";
-import List from "./Components/List/List.js";
+import MiniListContainer from "./Components/MiniListContainer/MiniListContainer";
+import ListContainer from "./Components/ListContainer/ListContainer";
 
 export const routes = [
 	{
-		path: "/",
-		component: { MiniList }
+		path: "/list",
+		component: ListContainer
 	},
 	{
-		path: "/list",
-		component: { List }
-	},
+		path: "/",
+		component: MiniListContainer
+	}
 ];

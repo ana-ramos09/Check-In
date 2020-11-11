@@ -55,6 +55,11 @@
     color:red;
 }
 
+.link-rule {
+    color: rgb(231, 141, 141);
+    font-size: 1.4em;
+}
+
 .location-container {
     display: flex;
     flex-direction: row;
