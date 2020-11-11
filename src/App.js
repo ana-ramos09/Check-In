@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { firestore } from "./firebaseUtils.js";
 import { loadLists, deleteLists } from "./Store/Actions/index.js";
 import { deleteList } from "./firebaseFuncs";
+import { routes } from "./Routes.js";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
 	const dispatch = useDispatch();
@@ -44,6 +46,7 @@ function App() {
 				updateLists={loadAllLists}
 			/>
 			<div className="main-container">
+			<Router>
 				<div className="lists-container">
 					{cities.map((city, index) => (
 						<MiniList
@@ -55,14 +58,20 @@ function App() {
 							delete={deleteOneList}
 						/>
 					))}
-
+						<Switch>
+							<Route exact path={routes[0].path} component={MiniList}/>
+							<Route path={routes[1].path} component={List}/>
+						</Switch>
+					
+					
 					{/* <List
-            listName={listName}
-            setListName={setListName}
-            listLocation={listLocation}
-            setListlocation={setListlocation}
-          /> */}
+            			listName={listName}
+            			setListName={setListName}
+            			listLocation={listLocation}
+            			setListlocation={setListlocation} */}
+          			{/* /> */}
 				</div>
+			</Router>
 				<div id="map" className="map-container"></div>
 			</div>
 		</div>

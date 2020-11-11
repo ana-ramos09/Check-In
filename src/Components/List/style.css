@@ -1,9 +1,10 @@
 .list {
     display: flex;
     flex-direction: column;
-    border: 1px solid #74546A;
+    border-radius: 10px;
+    background-color: rgb(231, 141, 141);
     width: 300px;
-    flex: 1;  
+    flex: 1; 
 }
 
 ::-webkit-scrollbar-track {
@@ -25,6 +26,9 @@
     height: 40px;
     font-size: 1.5em;
     margin-bottom: 20px;
+    /* border-bottom: 2px solid red; */
+    border-bottom: 2px solid rgb(231, 141, 141);
+    border-bottom-width: 85%;
 }
 
 .list-header-container > p {
@@ -35,11 +39,16 @@
 }
 
 .list-close {
+    background-image: url('../../images/backFinal.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
     background-color: transparent;
-    color: whitesmoke;
     cursor: pointer;
     width: 10%;
-    height: 40px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    /* height: 40px; */
 }
 
 .list-close:hover {
@@ -56,16 +65,17 @@
 
 .location-container > figure {
     height: 2.4em;
-    width: 2.4em;
-    background-image: url('../../images/locationFinal.png');
+    width: 10%;
+    background-image: url('../../images/locationNoun.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    text-align: left;
 }
 
 .location-container > p {
     color: whitesmoke;
-    font-size: 1.4em;
+    font-size: 1.35em;
     flex: 1;
 }
 
@@ -75,6 +85,8 @@
     cursor: pointer;
     width: 6em;
     color: whitesmoke;
+    border-radius: 20px;
+    margin-right: 15px;
 }
 
 .list-checklist-container {
@@ -95,5 +107,6 @@
     color: whitesmoke;
     cursor: pointer;
     height: 2.8em;
+    border-radius: 0px 0px 10px 10px;
 }
 

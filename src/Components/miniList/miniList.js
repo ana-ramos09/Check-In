@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import { deleteListFb } from "../../firebaseFuncs.js";
+import { Link } from "react-router-dom";
 
 const MiniList = (props) => {
     
@@ -9,15 +10,11 @@ const MiniList = (props) => {
         deleteListFb(props.name, props.location)
     }
 
-	const countDoneItems = () => {
+	const countTotalItems = () => {
 		let done =0;
 		let notDone = 0;
-		if (props.points === undefined) {
-			done = 0;
-			notDone = 0;
-			console.log(done)
-		} else {
-			props.points.forEach(element => {	
+		if (props.points !== undefined) {
+			props.points.forEach(element => {
 				console.log(element)		
 				if (element.done === true) {
 					done++;
@@ -25,8 +22,13 @@ const MiniList = (props) => {
 					notDone++;
 				}
 			})
-		}		
-		return `   ${done}/${notDone} done!`
+		}
+		const msg = `${done}/${notDone + done} done!`;
+		const total = notDone + done;	
+		return [msg, total]
+		// complete: msg,
+		// total: total
+		
 	}
 
 	return (
@@ -41,11 +43,12 @@ const MiniList = (props) => {
                 {props.comp}
 			</div>
 			<div className="miniList-footer">
-				<span></span>
-	<p value={props.points.length}>{ countDoneItems() }</p>
+				<span title="Open List"></span>
+				<p className="footer" value={countTotalItems()[1]} title="Open List">{ countTotalItems()[0] }</p>
+					{/* <div onClick={props.navegation}></div> */}
 			</div>
 		</div>
 	);
-};
+}
 
 export default MiniList;

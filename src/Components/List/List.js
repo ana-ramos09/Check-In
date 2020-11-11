@@ -6,6 +6,8 @@ import { saveList } from "../../firebaseFuncs.js";
 import { useSelector, useDispatch } from "react-redux";
 import { loadList, deleteTask, addTask, editTask } from "../../Store/Actions";
 import { firestore } from "../../firebaseUtils";
+import { Link } from "react-router-dom";
+import { routes } from "../../Routes.js";
 
 const List = (props) => {
   const dispatch = useDispatch();
@@ -49,16 +51,16 @@ const List = (props) => {
       <div className="list-header-container">
         <p id={props.titleId} value={props.titleContent}>
           {props.listName}
-        </p>
-        <button className="list-close" id={props.listClose} title="Close List">
-          X
-        </button>
+        </p>       
+          <button className="list-close" id={props.listClose} title="Back">
+            <Link to={routes[0].path}></Link>
+          </button>       
       </div>
       <div className="location-container">
         <figure alt="Location Symbol"></figure>
         <p>{props.listLocation}</p>
-        <button onClick={addPoint} title="Add Item">
-          Add Item!
+        <button onClick={addPoint} title="Add Task">
+          Add Task
         </button>
       </div>
       <div className="list-checklist-container" id={props.checklistContainer}>
