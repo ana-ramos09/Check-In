@@ -3,8 +3,8 @@ import List from "../List/List";
 
 const ListContainer = () => {
     
-    const [listName, setListName] = useState("Parques");
-    const [listLocation, setListlocation] = useState("São Paulo");
+    const [listName, setListName] = useState("Dogs");
+    const [listLocation, setListlocation] = useState("Dogland");
     
     return (
 		<List

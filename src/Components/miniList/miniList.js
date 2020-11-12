@@ -14,8 +14,7 @@ const MiniList = (props) => {
 		let done =0;
 		let notDone = 0;
 		if (props.points !== undefined) {
-			props.points.forEach(element => {
-				console.log(element)		
+			props.points.forEach(element => {		
 				if (element.done === true) {
 					done++;
 				} else {

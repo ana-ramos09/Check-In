@@ -21,7 +21,7 @@ const ListContainer = () => {
 					index={index}
 					location={city.location}
 					name={city.name}
-					points={city.points}
+					points={city.tasks}
 					delete={deleteOneList}
 				/>
 			))}

@@ -12,10 +12,10 @@ const List = (props) => {
 	const dispatch = useDispatch();
 
 	const cityDetail = useSelector((state) => state.app.cityDetail);
-	const pointsList = cityDetail.points;
+	const pointsList = cityDetail.tasks;
 
-	const onUpdate = (index, done, value) => {
-		dispatch(editTask({ index: index, done: done, value: value }));
+	const onUpdate = (index, visited, description) => {
+		dispatch(editTask({ index: index, visited: visited, description: description }));
 	};
 
 	const onDelete = (index) => {
@@ -27,7 +27,8 @@ const List = (props) => {
 	};
 
 	const loadFirestoreList = (listName, listLocation) => {
-		firestore
+		console.log(listName, listLocation)
+    	firestore
 			.collection("lists")
 			.doc(listName + " - " + listLocation)
 			.get()
@@ -38,20 +39,18 @@ const List = (props) => {
 	};
 
 	useEffect(() => {
-		loadFirestoreList("Parques", "São Paulo");
+    loadFirestoreList(cityDetail.name, cityDetail.location);
 	}, []);
 
 	const callSaveList = () => {
-		saveList(props.listName, props.listLocation, pointsList);
+		saveList(cityDetail.name, cityDetail.location, pointsList)
 	};
 
 	return (
-		<div className="list" id={props.listId}>
+		<div className="list">
 			<div className="list-header-container">
-				<p id={props.titleId} value={props.titleContent}>
-					{props.listName}
-				</p>
-				<button className="list-close" id={props.listClose} title="Back">
+				<p>{props.listName}</p>
+				<button className="list-close" title="Back">
 					<Link to="/" className="link-rule">.</Link>
 				</button>
 			</div>
@@ -62,13 +61,13 @@ const List = (props) => {
 					Add Task
 				</button>
 			</div>
-			<div className="list-checklist-container" id={props.checklistContainer}>
-				{pointsList.map((point, index) => (
+			<div className="list-checklist-container">
+				{pointsList.map((task, index) => (
 					<Task
 						key={index}
 						index={index}
-						done={point.done}
-						value={point.value}
+						visited={task.visited}
+						description={task.description}
 						onUpdate={onUpdate}
 						onDelete={onDelete}
 					/>
@@ -76,7 +75,6 @@ const List = (props) => {
 			</div>
 			<button
 				className="list-save"
-				id={props.saveList}
 				onClick={callSaveList}
 				title="Save List"
 			>

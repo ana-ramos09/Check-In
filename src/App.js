@@ -11,8 +11,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 function App() {
 	const dispatch = useDispatch();
 
-	const [listName, setListName] = useState("Parques");
-	const [listLocation, setListlocation] = useState("São Paulo");
+	const [listName, setListName] = useState("Dogs");
+	const [listLocation, setListlocation] = useState("Dogland");
 
 	useEffect(() => {
 		loadAllLists();

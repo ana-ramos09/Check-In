@@ -7,7 +7,7 @@ export const createList = (name, location) => {
 		.set({
 			name: name,
 			location: location,
-			points: [],
+			tasks: [],
 		})
 		.then(() => {
 			console.log("List Created!");
@@ -35,7 +35,7 @@ export const saveList = (name, location, tasks) => {
 		.collection("lists")
 		.doc(name + " - " + location)
 		.update({
-			points: tasks,
+			tasks: tasks,
 		})
 		.then(() => {
 			console.log("Saved List!");
