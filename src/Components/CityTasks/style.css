@@ -78,9 +78,9 @@
     text-align: left;
 }
 
-.location-container > p {
+.city-tasks-location-container > p {
     color: whitesmoke;
-    font-size: 1.35em;
+    font-size: 1.2em;
     flex: 1;
 }
 
@@ -92,6 +92,7 @@
     color: whitesmoke;
     border-radius: 20px;
     margin-right: 15px;
+    
 }
 
 .city-tasks-checklist-container {

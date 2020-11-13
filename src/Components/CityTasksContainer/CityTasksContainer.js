@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import CityTasks from "../CityTasks/CityTasks";
 
 const CityTasksContainer = () => {
-	const [listName, setListName] = useState("Dogs");
-	const [listLocation, setListLocation] = useState("Dogland");
+
+	const [listName, setListName] = useState("Compras");
+	const [listLocation, setListLocation] = useState("Goiânia");
 
 	return (
 		<CityTasks

@@ -16,7 +16,7 @@ const appReducer = (state = initialState, action) => {
 		case "LOAD_LIST":
 			return {
 				...state,
-				cityDetail: action.payload,
+				cityDetail: action.payload,		
 			};
 		case "DELETE_TASK":
 			return {
