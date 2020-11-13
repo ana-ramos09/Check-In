@@ -8,14 +8,16 @@ import { loadList, deleteTask, addTask, editTask } from "../../Store/Actions";
 import { firestore } from "../../firebaseUtils";
 import { Link } from "react-router-dom";
 
-const List = (props) => {
+const CityTasks = (props) => {
 	const dispatch = useDispatch();
 
 	const cityDetail = useSelector((state) => state.app.cityDetail);
-	const pointsList = cityDetail.tasks;
+	const tasksPoints = cityDetail.tasks;
 
 	const onUpdate = (index, visited, description) => {
-		dispatch(editTask({ index: index, visited: visited, description: description }));
+		dispatch(
+			editTask({ index: index, visited: visited, description: description })
+		);
 	};
 
 	const onDelete = (index) => {
@@ -27,8 +29,8 @@ const List = (props) => {
 	};
 
 	const loadFirestoreList = (listName, listLocation) => {
-		console.log(listName, listLocation)
-    	firestore
+		console.log(listName, listLocation);
+		firestore
 			.collection("lists")
 			.doc(listName + " - " + listLocation)
 			.get()
@@ -39,30 +41,32 @@ const List = (props) => {
 	};
 
 	useEffect(() => {
-    loadFirestoreList(cityDetail.name, cityDetail.location);
+		loadFirestoreList(cityDetail.name, cityDetail.location);
 	}, []);
 
 	const callSaveList = () => {
-		saveList(cityDetail.name, cityDetail.location, pointsList)
+		saveList(cityDetail.name, cityDetail.location, tasksPoints);
 	};
 
 	return (
-		<div className="list">
-			<div className="list-header-container">
+		<div className="city-tasks">
+			<div className="city-tasks-header-container">
 				<p>{props.listName}</p>
-				<button className="list-close" title="Back">
-					<Link to="/" className="link-rule">.</Link>
+				<button className="city-tasks-close" title="Back">
+					<Link to="/" className="link-rule">
+						.
+					</Link>
 				</button>
 			</div>
-			<div className="location-container">
+			<div className="city-tasks-location-container">
 				<figure alt="Location Symbol"></figure>
 				<p>{props.listLocation}</p>
 				<button onClick={addPoint} title="Add Task">
 					Add Task
 				</button>
 			</div>
-			<div className="list-checklist-container">
-				{pointsList.map((task, index) => (
+			<div className="city-tasks-checklist-container">
+				{tasksPoints.map((task, index) => (
 					<Task
 						key={index}
 						index={index}
@@ -74,7 +78,7 @@ const List = (props) => {
 				))}
 			</div>
 			<button
-				className="list-save"
+				className="city-tasks-save"
 				onClick={callSaveList}
 				title="Save List"
 			>
@@ -84,4 +88,4 @@ const List = (props) => {
 	);
 };
 
-export default List;
+export default CityTasks;

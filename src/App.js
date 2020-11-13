@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Header from "./Components/Header/Header.js";
-import AddList from "./Components/Add/AddList.js";
+import HomeHeader from "./Components/HomeHeader/HomeHeader.js";
+import AddCityCard from "./Components/AddCityCard/AddCityCard.js";
 import { useDispatch } from "react-redux";
 import { firestore } from "./firebaseUtils.js";
 import { loadLists } from "./Store/Actions/index.js";
@@ -28,8 +28,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<Header />
-			<AddList
+			<HomeHeader />
+			<AddCityCard
 				listName={listName}
 				setListName={setListName}
 				listLocation={listLocation}

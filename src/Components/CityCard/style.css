@@ -1,4 +1,4 @@
-.miniList-container {
+.city-card-container {
     /* border: 2px solid yellow; */
     background-color: rosybrown;
     display: flex;
@@ -9,7 +9,7 @@
     border-radius: 10px;
 }
 
-.miniList-header {
+.city-card-header {
     /* border: 1px solid green; */
     border-bottom: 2px solid rgb(231, 141, 141);
     width: 100%;
@@ -20,7 +20,7 @@
     padding: 5px;
 }
 
-.miniList-header > input {
+.city-card-header > input {
     width: 85%;
     height: 100%;
     /* border: 1px solid yellow; */
@@ -32,7 +32,7 @@
     padding-left: 10px;
 }
 
-.miniList-header > span {
+.city-card-header > span {
     background-image: url("../../images/closeX.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -45,7 +45,7 @@
     /* background-color: tomato; */
 }
 
-.miniList-main {
+.city-card-main {
     /* border: 1px solid blueviolet;s */
     width: 100%;
     height: 38%;
@@ -57,7 +57,7 @@
     border-bottom: 2px solid rgb(231, 141, 141);
 }
 
-.miniList-main > span {
+.city-card-main > span {
     background-image: url("../../images/locationNoun.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -68,7 +68,7 @@
     /* flex: 1; */
 }
 
-.miniList-main > p {
+.city-card-main > p {
     /* border: 1px solid yellowgreen; */
     flex: 1;
     color: whitesmoke;
@@ -76,7 +76,7 @@
     /* text-align: center; */
 }
 
-.miniList-footer {
+.city-card-footer {
     /* border: 1px solid red; */
     width: 100%;
     height: 30%;
@@ -87,7 +87,7 @@
     align-items: center;
 }
 
-.miniList-footer > span {
+.city-card-footer > span {
     background-image: url("../../images/listicon.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -97,7 +97,7 @@
     height: 80%;
 }
 
-.miniList-footer > span:hover {
+.city-card-footer > span:hover {
     cursor: pointer;
 }
 

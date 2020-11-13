@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 const Task = (props) => {
-	return(
+	return (
 		<div className="task-container">
 			<div className="checklist-container">
 				<input
@@ -29,7 +29,7 @@ const Task = (props) => {
 				></button>
 			</div>
 		</div>
-	)
+	);
 };
 
 export default Task;

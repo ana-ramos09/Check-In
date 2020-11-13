@@ -3,12 +3,12 @@ export const initialStateCities = {
 		{
 			name: "",
 			location: "",
-			points: [{ done: false, value: "" }],
+			tasks: [{ visited: false, description: "" }],
 		},
 		{
 			name: "",
 			location: "",
-			points: [{ done: false, value: "" }],
+			tasks: [{ visited: false, description: "" }],
 		},
 	],
 };

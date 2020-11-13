@@ -1,4 +1,4 @@
-.list {
+.city-tasks {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -18,7 +18,7 @@
     background: #dad7d7;
 }
 
-.list-header-container {
+.city-tasks-header-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -31,14 +31,14 @@
     border-bottom-width: 85%;
 }
 
-.list-header-container > p {
+.city-tasks-header-container > p {
     width: 90%;
     height: 40px;
     padding: 5px 0px 0px 10px;
     color: whitesmoke;
 }
 
-.list-close {
+.city-tasks-close {
     background-image: url('../../images/backFinal.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -51,7 +51,7 @@
     /* height: 40px; */
 }
 
-.list-close:hover {
+.city-tasks-close:hover {
     color:red;
 }
 
@@ -60,7 +60,7 @@
     font-size: 1.4em;
 }
 
-.location-container {
+.city-tasks-location-container {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -68,7 +68,7 @@
     height: 2.4em;
 }
 
-.location-container > figure {
+.city-tasks-location-container > figure {
     height: 2.4em;
     width: 10%;
     background-image: url('../../images/locationNoun.png');
@@ -84,7 +84,7 @@
     flex: 1;
 }
 
-.location-container > button {
+.city-tasks-location-container > button {
     background-color: tomato;
     color: whitesmoke;
     cursor: pointer;
@@ -94,7 +94,7 @@
     margin-right: 15px;
 }
 
-.list-checklist-container {
+.city-tasks-checklist-container {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -103,11 +103,11 @@
     overflow-y: auto;
 }
 
-.list-checklist-container > input {
+.city-tasks-checklist-container > input {
     margin: 10px;
 }
 
-.list-save {
+.city-tasks-save {
     background-color: tomato;
     color: whitesmoke;
     cursor: pointer;

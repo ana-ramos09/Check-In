@@ -1,13 +1,13 @@
-import MiniListContainer from "./Components/MiniListContainer/MiniListContainer";
-import ListContainer from "./Components/ListContainer/ListContainer";
+import CityDashboard from "./Components/CityDashboard/CityDashboard";
+import CityTasksContainer from "./Components/CityTasksContainer/CityTasksContainer";
 
 export const routes = [
 	{
 		path: "/list",
-		component: ListContainer
+		component: CityTasksContainer,
 	},
 	{
 		path: "/",
-		component: MiniListContainer
-	}
+		component: CityDashboard,
+	},
 ];
