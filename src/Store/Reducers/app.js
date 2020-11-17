@@ -2,11 +2,11 @@
 
 export const initialState = {
 	cityDetail: {
-		name: "Dogs",
-		location: "Dogland",
+		name: "",
+		location: "",
 		tasks: [
-			{ visited: false, description: "Pracinha Redonda" },
-			{ visited: true, description: "Outra Praça" },
+			{ visited: false, description: "" },
+			{ visited: true, description: "" },
 		],
 	},
 };
@@ -16,7 +16,7 @@ const appReducer = (state = initialState, action) => {
 		case "LOAD_LIST":
 			return {
 				...state,
-				cityDetail: action.payload,		
+				cityDetail: action.payload,
 			};
 		case "DELETE_TASK":
 			return {
