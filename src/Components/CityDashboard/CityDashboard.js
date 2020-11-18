@@ -26,6 +26,7 @@ const CityDashboard = () => {
 					city={city}
 					delete={deleteOneList}
 					openList={loadSelectedList}
+					id={city.id}
 				/>
 			))}
 		</>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const CityCard = (props) => {
 	const deleteList = () => {
 		props.delete(props.index);
-		deleteListFb(props.city.name, props.city.location);
+		deleteListFb(props.id);
 	};
 
 	const countTotalItems = () => {

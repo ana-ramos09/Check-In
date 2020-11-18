@@ -3,8 +3,7 @@ import { firestore } from "./firebaseUtils";
 export const createList = (name, location) => {
 	firestore
 		.collection("lists")
-		.doc(name + " - " + location)
-		.set({
+		.add({
 			name: name,
 			location: location,
 			tasks: [],
@@ -17,10 +16,10 @@ export const createList = (name, location) => {
 		});
 };
 
-export const deleteListFb = (name, location) => {
+export const deleteListFb = (id) => {
 	firestore
 		.collection("lists")
-		.doc(name + " - " + location)
+		.doc(id)
 		.delete()
 		.then(() => {
 			console.log("Document Delete!");
@@ -30,15 +29,17 @@ export const deleteListFb = (name, location) => {
 		});
 };
 
-export const saveList = (name, location, tasks) => {
+export const saveList = (name, location, tasks, id) => {
 	firestore
 		.collection("lists")
-		.doc(name + " - " + location)
+		.doc(id)
 		.update({
+			name: name,
+			location: location,
 			tasks: tasks,
 		})
 		.then(() => {
-			console.log("Saved List!");
+			console.log("List Saved!");
 		})
 		.catch((error) => {
 			console.log("List not saved", error);

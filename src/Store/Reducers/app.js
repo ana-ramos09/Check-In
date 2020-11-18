@@ -1,5 +1,3 @@
-// import State from "ol/source/State";
-
 export const initialState = {
 	cityDetail: {
 		name: "",
@@ -8,6 +6,7 @@ export const initialState = {
 			{ visited: false, description: "" },
 			{ visited: true, description: "" },
 		],
+		id: "",
 	},
 };
 

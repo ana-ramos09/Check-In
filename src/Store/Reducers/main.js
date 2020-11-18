@@ -4,11 +4,13 @@ export const initialStateCities = {
 			name: "",
 			location: "",
 			tasks: [{ visited: false, description: "" }],
+			id: "",
 		},
 		{
 			name: "",
 			location: "",
 			tasks: [{ visited: false, description: "" }],
+			id: "",
 		},
 	],
 };
@@ -23,8 +25,18 @@ const mainReducer = (state = initialStateCities, action) => {
 		case "DELETE_LISTS":
 			return {
 				...state,
-                cities: state.cities.filter(
-                    (list, index) => index !== action.payload)
+				cities: state.cities.filter((city, index) => index !== action.payload),
+			};
+		case "REFRESH_LIST":
+			return {
+				...state,
+				cities: state.cities.map((city) => {
+					if (city.id === action.payload.id) {
+						return action.payload
+					} else {
+						return city;
+					}
+				}),
 			};
 		default:
 			return state;

@@ -22,7 +22,8 @@ function App() {
 		firestore
 			.collection("lists")
 			.get()
-			.then((resp) => resp.docs.map((item) => item.data()))
+			.then((resp) => resp.docs.map((item) => ({...item.data(), id: item.id})
+			))
 			.then((citiesArray) => dispatch(loadLists(citiesArray)));
 	};
 

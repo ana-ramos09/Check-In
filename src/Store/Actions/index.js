@@ -42,3 +42,11 @@ export const deleteLists = (data) => {
 		payload: data,
 	};
 };
+
+export const refreshList = (data) => {
+	console.log(data)
+	return {
+		type: "REFRESH_LIST",
+		payload: data,
+	};
+};

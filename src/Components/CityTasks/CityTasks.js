@@ -3,7 +3,7 @@ import "./style.css";
 import Task from "../Task/Task.js";
 import { saveList } from "../../firebaseFuncs.js";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTask, addTask, editTask } from "../../Store/Actions";
+import { deleteTask, addTask, editTask, refreshList } from "../../Store/Actions";
 import { Link } from "react-router-dom";
 
 const CityTasks = (props) => {
@@ -26,7 +26,8 @@ const CityTasks = (props) => {
 	};
 
 	const callSaveList = () => {
-		saveList(cityDetail.name, cityDetail.location, cityDetail.tasks);
+		dispatch(refreshList({name: cityDetail.name, location: cityDetail.location, tasks: cityDetail.tasks, id: cityDetail.id}))
+		saveList(cityDetail.name, cityDetail.location, cityDetail.tasks, cityDetail.id);
 	};
 
 	return (
