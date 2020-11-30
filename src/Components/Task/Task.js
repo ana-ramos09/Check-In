@@ -1,32 +1,42 @@
 import React from "react";
 import "./style.css";
+import { TextField, Checkbox, Button, DeleteSVGIcon } from "react-md";
 
 const Task = (props) => {
+
+	console.log(Checkbox);
+
 	return (
-		<div className="task-container">
+		<div class="tasks-container">
 			<div className="checklist-container">
-				<input
-					className="check"
-					type="checkbox"
+				<Checkbox
 					checked={props.visited}
 					onChange={(e) =>
 						props.onUpdate(props.index, e.target.checked, props.description)
 					}
-				></input>
-				<input
-					className="task"
-					type="text"
+					title='Mark as done!'
+				></Checkbox>
+				<TextField
+					className="input-task"
+					themeType="outline"
 					value={props.description}
 					onChange={(e) =>
 						props.onUpdate(props.index, props.visited, e.target.value)
 					}
-				></input>
+				></TextField>
 			</div>
-			<div className="button-container-task">
-				<button
-					title="Delete this task"
+			<div className="button-container">
+				<Button
+					id="delete-task"
+					buttonType="icon"
+					theme="error"
+					className="button-delete-task"
+					themeType="flat"
 					onClick={() => props.onDelete(props.index)}
-				></button>
+					title="Delete this task"
+				>
+					<DeleteSVGIcon />
+				</Button>
 			</div>
 		</div>
 	);

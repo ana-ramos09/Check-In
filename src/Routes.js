@@ -3,7 +3,7 @@ import CityTasksContainer from "./Components/CityTasksContainer/CityTasksContain
 
 export const routes = [
 	{
-		path: "/list",
+		path: "/list/:id",
 		component: CityTasksContainer,
 	},
 	{

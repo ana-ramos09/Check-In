@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import HomeHeader from "./Components/HomeHeader/HomeHeader.js";
+// import HomeHeader from "./Components/HomeHeader/HomeHeader.js";
 import AddCityCard from "./Components/AddCityCard/AddCityCard.js";
 import { useDispatch } from "react-redux";
 import { firestore } from "./firebaseUtils.js";
 import { loadLists } from "./Store/Actions/index.js";
 import { routes } from "./Routes.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { AppBar, AppBarNav, AppBarTitle, MenuSVGIcon } from "react-md";
 
 function App() {
 	const dispatch = useDispatch();
@@ -22,14 +23,23 @@ function App() {
 		firestore
 			.collection("lists")
 			.get()
-			.then((resp) => resp.docs.map((item) => ({...item.data(), id: item.id})
-			))
+			.then((resp) =>
+				resp.docs.map((item) => ({ ...item.data(), id: item.id }))
+			)
 			.then((citiesArray) => dispatch(loadLists(citiesArray)));
 	};
 
 	return (
 		<div className="App">
-			<HomeHeader />
+			<AppBar
+				className="AppBar-header">
+				<AppBarNav>
+					<MenuSVGIcon></MenuSVGIcon>	
+				</AppBarNav>
+				<AppBarTitle>Check In</AppBarTitle>
+			</AppBar>
+
+			{/* <HomeHeader /> */}
 			<AddCityCard
 				listName={listName}
 				setListName={setListName}
@@ -42,7 +52,12 @@ function App() {
 					<div className="lists-container">
 						<Switch>
 							{routes.map((route, index) => (
-								<Route exact path={route.path} component={route.component} key={index}/>
+								<Route
+									exact
+									path={route.path}
+									component={route.component}
+									key={index}
+								/>
 							))}
 						</Switch>
 					</div>

@@ -2,6 +2,20 @@ import React from "react";
 import "./style.css";
 import { deleteListFb } from "../../firebaseFuncs.js";
 import { Link } from "react-router-dom";
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+	CardContent,
+	FontIcon,
+	LocationOnFontIcon,
+	Button,
+	CancelFontIcon,
+	TextIconSpacing,
+	Text,
+	DoneSVGIcon,
+	FormatListBulletedFontIcon,
+} from "react-md";
 
 const CityCard = (props) => {
 	const deleteList = () => {
@@ -26,29 +40,64 @@ const CityCard = (props) => {
 		return [msg, total];
 	};
 
-	const clickToOpen = () => {
-		props.openList(props.city);
-	}
-
 	return (
-		<div className="city-card-container">
-			<div className="city-card-header">
-				<input value={props.city.name} placeholder="List`s Name"></input>
-				<span onClick={deleteList} title="Delete"></span>
-			</div>
-			<div className="city-card-main">
-				<span></span>
-				<p>{props.city.location}</p>
-			</div>
-			<div className="city-card-footer">
-				<span title="Open List"></span>
-				<Link to="/list">
-					<p onClick={clickToOpen} className="footer" value={countTotalItems()[1]} title="Open List">
-						{countTotalItems()[0]}
-					</p>
-				</Link>
-			</div>
-		</div>
+		// <div className="city-card-container">
+		// 	<div className="city-card-header">
+		// 		<input value={props.city.name} placeholder="List`s Name"></input>
+		// 		<span onClick={deleteList} title="Delete"></span>
+		// 	</div>
+		// 	<div className="city-card-main">
+		// 		<span></span>
+		// 		<p>{props.city.location}</p>
+		// 	</div>
+		// 	<div className="city-card-footer">
+		// 		<span title="Open List"></span>
+		// 		<Link to={`/list/${props.city.id}`}>
+		// 			<p className="footer" value={countTotalItems()[1]} title="Open List">
+		// 				{countTotalItems()[0]}
+		// 			</p>
+		// 		</Link>
+		// 	</div>
+		// </div>
+
+		<Card className="container-city-card">
+			<CardHeader className={"card-header"}>
+				<div className="header-wrapper-city-card">
+					<CardTitle className="title-city-card">{props.city.name}</CardTitle>
+					<CancelFontIcon
+						onClick={deleteList}
+						title="Delete"
+						className="delete-city-card"
+					></CancelFontIcon>
+				</div>
+			</CardHeader>
+			<CardContent className={"card-main"}>
+				<div className="main-wrapper-city-card">
+					<LocationOnFontIcon className="location-icon-city-card"></LocationOnFontIcon>
+					<Text className="location-city-card">{props.city.location}</Text>
+				</div>
+			</CardContent>
+			<CardContent className={"card-footer"}>
+				<div className="footer-wrapper-city-card">
+					<Link to={`/list/${props.city.id}`}>
+						<Button
+							id="go-to-city-tasks"
+							value={countTotalItems()[1]}
+							className="go-to-city-tasks"
+							themeType="outlined"
+						>
+							<TextIconSpacing
+								icon={
+									<FormatListBulletedFontIcon className="list-icon"></FormatListBulletedFontIcon>
+								}
+							>
+								{countTotalItems()[0]}
+							</TextIconSpacing>
+						</Button>
+					</Link>
+				</div>
+			</CardContent>
+		</Card>
 	);
 };
 

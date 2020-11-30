@@ -1,0 +1,47 @@
+@import "~@react-md/theme/dist/color-palette";
+
+// Coolors
+$rmd-theme-primary: $rmd-red-300;
+$rmd-theme-secondary: $rmd-red-a-100;
+$rmd-theme-warning: $rmd-grey-900;
+$rmd-theme-error: $rmd-blue-grey-50;
+
+
+// Expansion Panels
+$rmd-expansion-panel-header-padding: 0.8rem;
+
+
+//Text-Field
+$rmd-text-field-light-border-color: $rmd-red-a-100;
+$rmd-text-field-underline-label-padding-top: 2rem !default;
+$rmd-text-field-active-color: $rmd-red-400;
+$rmd-text-field-active-width: 0.5em;
+$rmd-text-field-height: 2rem !default;
+
+$rmd-label-font-size: 0.8em !default;
+$rmd-label-floating-font-size: 0.8em !default;
+
+$rmd-text-field-border-hover-color: $rmd-red-a-100;
+$rmd-text-field-border-radius: 0.55rem !default;
+$rmd-text-field-border-width: 1.5px !default;
+
+
+//Buttons
+$rmd-button-icon-size: 4rem;
+$rmd-button-text-height: 0.50rem !default;
+
+
+//Checkbox
+$rmd-switch-track-height: 1rem !default;
+$rmd-toggle-inset: 0.3125rem !default;
+
+
+//Cards 
+$rmd-card-elevation: 3 !default;
+$rmd-card-color: rmd-theme-var(on-surface) !default;
+$rmd-card-header-padding: 1rem !default;
+$rmd-card-border-radius: 0.25rem !default;
+$rmd-card-header-padding-top: 1.5rem !default;
+$rmd-card-header-spacing: 1rem !default;
+$rmd-card-content-padding: 1rem !default;
+
