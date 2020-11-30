@@ -1,5 +1,4 @@
-.city-card-container {
-    /* border: 2px solid yellow; */
+/* .city-card-container {
     background-color: rosybrown;
     display: flex;
     flex-direction: column;
@@ -10,7 +9,6 @@
 }
 
 .city-card-header {
-    /* border: 1px solid green; */
     border-bottom: 2px solid rgb(231, 141, 141);
     width: 100%;
     height: 32%;
@@ -23,7 +21,6 @@
 .city-card-header > input {
     width: 85%;
     height: 100%;
-    /* border: 1px solid yellow; */
     background-color: transparent;
     color: whitesmoke;
     font-size: larger;
@@ -42,11 +39,9 @@
     color: whitesmoke;
     cursor: pointer;
     padding-left: 5px;
-    /* background-color: tomato; */
 }
 
 .city-card-main {
-    /* border: 1px solid blueviolet;s */
     width: 100%;
     height: 38%;
     padding: 5px;
@@ -62,22 +57,17 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    /* border: 1px solid black; */
     width: 15%;
     height: 60%;    
-    /* flex: 1; */
 }
 
 .city-card-main > p {
-    /* border: 1px solid yellowgreen; */
     flex: 1;
     color: whitesmoke;
     word-wrap: break-word;  
-    /* text-align: center; */
 }
 
 .city-card-footer {
-    /* border: 1px solid red; */
     width: 100%;
     height: 30%;
     padding: 5px;
@@ -93,7 +83,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     width: 20%;
-    /* flex: 1; */
     height: 80%;
 }
 
@@ -109,4 +98,78 @@
     cursor: pointer;
     color: whitesmoke;
     color: #000000;
+} */
+
+.container-city-card {
+    width: 45%;
+    height: 30%;
+    background-color: #FF8A80;
+    margin-top: 20px;
+}
+
+.container-city-card > :not(:first-child) {
+    margin-top: 10px;
+}
+
+.header-wrapper-city-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title-city-card {
+    padding-left: 6px;
+    color: #263238;
+    font-size: 1.4em;
+}
+
+.delete-city-card {
+    margin-top: 4px;
+    width: 30px;
+    height: 30px;
+}
+.main-wrapper-city-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.footer-wrapper-city-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.go-to-city-tasks {
+    display: flex;
+    border: 1px solid black;
+}
+
+.delete-city-card, 
+.list-icon {
+    cursor: pointer;
+}
+
+.delete-city-card, 
+.list-icon, 
+.location-icon-city-card {
+    color: #263238;
+    opacity: 0.8;
+}
+
+.delete-city-card, 
+.list-icon, 
+.location-icon-city-card:hover {
+    color: #263238;
+    opacity: 0.8;
+}
+
+.card-header,.card-main, .card-footer {
+    padding: 2px;
+}
+
+.divider {
+    width: 90%;
+    height: 0.25em;
+    color: black;
 }

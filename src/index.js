@@ -1,4 +1,5 @@
 import './index.scss';
+import { Configuration } from 'react-md'
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -14,8 +15,11 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    < App />
-  </Provider>,
+    <Configuration>
+      < App />
+    </Configuration>
+  </Provider>
+  ,
  document.getElementById("root")
 );
 

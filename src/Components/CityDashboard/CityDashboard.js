@@ -12,10 +12,6 @@ const CityDashboard = () => {
 	const deleteOneList = (index) => {
 		dispatch(deleteLists(index));
 	};
-	
-	const loadSelectedList = (city) => {
-		dispatch(loadList(city));
-	};
 
 	return (
 		<>
@@ -25,7 +21,6 @@ const CityDashboard = () => {
 					index={index}
 					city={city}
 					delete={deleteOneList}
-					openList={loadSelectedList}
 					id={city.id}
 				/>
 			))}
