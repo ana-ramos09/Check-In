@@ -16,8 +16,8 @@ body, #root {
 .App {
   display: flex;
   flex-direction: column;
-  /* background-color: #212121; */
   background: linear-gradient(217deg, #212121, #263238);
+  flex: 1;
   height: 100vh;
 }
 
@@ -40,14 +40,14 @@ body, #root {
   padding-top: 30px;
   flex: 1;
   flex-wrap: wrap;
-  /* border: 3px solid purple; */
 }
 
 .lists-container {
   display: flex;
   width: 40%;
-  height: 550px;
-  border: 3px solid rgb(231, 141, 141);
+  /* flex: 1; */
+  height: 500px;
+  border: 3px solid rgb(7, 6, 6);;
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
@@ -58,9 +58,8 @@ body, #root {
 
 .map-container {
   width: 50%;
-  height: 550px;
-  border: 3px solid rgb(231, 141, 141);
-  background-image: url('./images/street-view.png');
+  height: 500px;
+  border: 3px solid rgb(7, 6, 6);
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -68,4 +67,12 @@ body, #root {
 
 .AppBar-header {
   background: linear-gradient(217deg, #FF5252, #e78d8d, #FFCDD2);
+}
+
+.options-container {
+  /* border: 3px solid yellow; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* padding-left: 20px; */
 }

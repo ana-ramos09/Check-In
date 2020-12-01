@@ -90,9 +90,11 @@
 }
 
 .expansion-panel-container {
-    width: 10%;
+    width: 20%;
     display: flex;
-    align-self: center;
+    align-self: flex-start;
+    margin-top: 20px;
+    border-radius: 0px 60px 0px 0px;
     transition: width 1.5s;
 }
 

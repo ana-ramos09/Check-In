@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-// import HomeHeader from "./Components/HomeHeader/HomeHeader.js";
 import AddCityCard from "./Components/AddCityCard/AddCityCard.js";
+// import AddLayer from "./Components/AddMapLayer/AddLayer.js";
+import Map from "./Components/Map/Map.js";
 import { useDispatch } from "react-redux";
 import { firestore } from "./firebaseUtils.js";
 import { loadLists } from "./Store/Actions/index.js";
 import { routes } from "./Routes.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AppBar, AppBarNav, AppBarTitle, MenuSVGIcon } from "react-md";
+import AddLayers from "./Components/ToggleMapLayers/ToggleMapLayers.js";
 
 function App() {
 	const dispatch = useDispatch();
@@ -31,22 +33,23 @@ function App() {
 
 	return (
 		<div className="App">
-			<AppBar
-				className="AppBar-header">
+			<AppBar className="AppBar-header">
 				<AppBarNav>
-					<MenuSVGIcon></MenuSVGIcon>	
+					<MenuSVGIcon></MenuSVGIcon>
 				</AppBarNav>
 				<AppBarTitle>Check In</AppBarTitle>
 			</AppBar>
 
-			{/* <HomeHeader /> */}
-			<AddCityCard
-				listName={listName}
-				setListName={setListName}
-				listLocation={listLocation}
-				setListlocation={setListlocation}
-				updateLists={loadAllLists}
-			/>
+			<div className="options-container">
+				<AddCityCard
+					listName={listName}
+					setListName={setListName}
+					listLocation={listLocation}
+					setListlocation={setListlocation}
+					updateLists={loadAllLists}
+				/>
+				<AddLayers></AddLayers>
+			</div>
 			<div className="main-container">
 				<Router>
 					<div className="lists-container">
@@ -62,7 +65,7 @@ function App() {
 						</Switch>
 					</div>
 				</Router>
-				<div id="map" className="map-container"></div>
+				<Map></Map>
 			</div>
 		</div>
 	);
