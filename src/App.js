@@ -33,9 +33,10 @@ function App() {
 
 	return (
 		<div className="App">
-			<AppBar className="AppBar-header">
+			<AppBar
+				className="AppBar-header">
 				<AppBarNav>
-					<MenuSVGIcon></MenuSVGIcon>
+					<MenuSVGIcon></MenuSVGIcon>	
 				</AppBarNav>
 				<AppBarTitle>Check In</AppBarTitle>
 			</AppBar>
