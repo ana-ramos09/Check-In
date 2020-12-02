@@ -40,6 +40,7 @@ body, #root {
   padding-top: 30px;
   flex: 1;
   flex-wrap: wrap;
+  /* border: 3px solid blue; */
 }
 
 .lists-container {
@@ -59,7 +60,7 @@ body, #root {
   width: 50%;
   height: 550px;
   border: 3px solid rgb(231, 141, 141);
-  background-image: url('./images/street-view.png');
+  /* background-image: url('./images/street-view.png'); */
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -70,9 +71,8 @@ body, #root {
 }
 
 .options-container {
-  /* border: 3px solid yellow; */
   display: flex;
+  /* border: 3px solid yellow; */
   flex-direction: row;
-  justify-content: space-evenly;
-  /* padding-left: 20px; */
+  justify-content: space-between;
 }

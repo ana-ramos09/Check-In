@@ -44,9 +44,15 @@ export const deleteLists = (data) => {
 };
 
 export const refreshList = (data) => {
-	console.log(data)
 	return {
 		type: "REFRESH_LIST",
 		payload: data,
 	};
 };
+
+export const selectBasemap = (data) => {
+	return {
+		type: "SELECT_BASEMAP",
+		payload: data,
+	};
+}

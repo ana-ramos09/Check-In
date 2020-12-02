@@ -1,11 +1,12 @@
 .layers-selection-container {
     border: 2px solid black;
-    /* width: 17%; */
+    width: 270px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 20px;
     background: #FFEBEE;
     color: #212121;
+
 }

@@ -90,7 +90,7 @@
 }
 
 .expansion-panel-container {
-    width: 20%;
+    width: 350px;
     display: flex;
     align-self: flex-start;
     margin-top: 20px;
@@ -99,7 +99,7 @@
 }
 
 .expansion-panel-container:hover {
-    width: 27%;
+    width: 380px;
 }
 
 .expansion-panel {
