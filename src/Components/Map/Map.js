@@ -11,18 +11,17 @@ import {
 import "ol/ol.css";
 import "./style.css";
 import { useSelector } from "react-redux";
+import { set } from "ol/transform";
 
 const Map = () => {
 	const olState = useSelector((state) => state.ol.mapType);
 
 	const mapRef = useRef();
 
-	const [map, setMap] = useState();
-
-	const [standard, setStandard] = useState();
-	const [humanitarian, setHumanitarian] = useState();
-	const [terrain, setTerrain] = useState();
-	const [watercolor, stamentWatercolor] = useState();
+	const [hu, setHu] = useState();
+	const [st, setSt] = useState();
+	const [te, setTe] = useState();
+	const [wa, setWa] = useState();
 
 	const initialMap = () => {
 		const initialMap = new olMap({
@@ -33,28 +32,13 @@ const Map = () => {
 				}),
 			],
 			view: new olView({
-				center: [-5206689.487652164, -2615674.854082493],
+				center: [-5206689.0, -2615674.0],
 				zoom: 6,
 				minZoom: 4,
 				rotation: 0,
 			}),
 		});
 
-		
-		// On Method - Listen for a certain type of element/object
-		initialMap.on("click", function (e) {
-			console.log(e.coordinate);
-		});
-
-		initialMap.setTarget(mapRef.current);
-
-		setMap(initialMap);
-	};
-
-	const layersManagement = () => {
-		//Basemaps Layers
-
-		//Humanitarian
 		const openStreetMapHumanitarian = new olTile({
 			source: new olSource({
 				url: "https://{a-c}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
@@ -63,14 +47,12 @@ const Map = () => {
 			title: "OSMHumanitarian",
 		});
 
-		//Standard
 		const openStreetMapStandard = new olTile({
 			source: new olSource(),
 			visible: olState === "OSMStandard",
 			title: "OSMStandard",
 		});
 
-		//Terrain
 		const stamentTerrain = new olTile({
 			source: new olSource({
 				url: "http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg",
@@ -80,7 +62,6 @@ const Map = () => {
 			title: "StamenTerrain",
 		});
 
-		//Watercolor
 		const stamentWatercolor = new olTile({
 			source: new olSource({
 				url: "http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg",
@@ -88,33 +69,49 @@ const Map = () => {
 			}),
 			visible: olState === "StamentWatercolor",
 			title: "StamentWatercolor",
-		})
-
-		//Layer Group
-		const baseLayerGroup = new olGroup({
-			layers: [
-				openStreetMapHumanitarian,
-				openStreetMapStandard,
-				stamentTerrain,
-				stamentWatercolor,
-			],
 		});
 
-		// AddLayer Method - Add the layer to the top of the map
-		map.addLayer(baseLayerGroup);
-	}
+		setHu(openStreetMapHumanitarian);
+		setSt(openStreetMapStandard);
+		setTe(stamentTerrain);
+		setWa(stamentWatercolor);
+
+		initialMap.addLayer(openStreetMapHumanitarian);
+		initialMap.addLayer(openStreetMapStandard);
+		initialMap.addLayer(stamentTerrain);
+		initialMap.addLayer(stamentWatercolor);
+
+		// On Method - Listen for a certain type of element/object
+		initialMap.on("click", function (e) {
+			console.log(e.coordinate);
+		});
+
+		initialMap.setTarget(mapRef.current);
+	};
+
+	const refresh = () => {
+		hu.setVisible(olState === "OSMHumanitarian");
+		st.setVisible(olState === "OSMStandard");
+		te.setVisible(olState === "StamenTerrain");
+		wa.setVisible(olState === "StamentWatercolor");
+	};
 
 	useEffect(() => {
 		initialMap();
 	}, []);
 
 	useEffect(() => {
-
+		if (
+			hu !== undefined &&
+			st !== undefined &&
+			te !== undefined &&
+			wa !== undefined
+		) {
+			refresh();
+		}
 	}, [olState]);
 
 	return <div className="map-container" ref={mapRef}></div>;
 };
 
 export default Map;
-
-

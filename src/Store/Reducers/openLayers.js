@@ -1,14 +1,14 @@
 export const openLayersState = {
-	mapType: "StamenTerrain",
+	mapType: "StamentWatercolor",
 };
 
 const openLayersReducer = (state = openLayersState, action) => {
 	switch (action.type) {
 		case "SELECT_BASEMAP":
 			return {
-                ...state,
-                mapType: action.payload
-            };
+				...state,
+				mapType: action.payload,
+			};
 		default:
 			return state;
 	}
