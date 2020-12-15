@@ -55,4 +55,11 @@ export const selectBasemap = (data) => {
 		type: "SELECT_BASEMAP",
 		payload: data,
 	};
-}
+};
+
+export const uploadCoordenates = (data) => {
+	return {
+		type: "UPLOAD_COORDINATES",
+		payload: data,
+	};
+};

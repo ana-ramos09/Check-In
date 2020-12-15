@@ -40,7 +40,7 @@ const CityCard = (props) => {
 
 	return (
 		<Card className="container-city-card">
-			<CardHeader className={"card-header"}>
+			<CardHeader className="card-header-city-card">
 				<div className="header-wrapper-city-card">
 					<CardTitle className="title-city-card">{props.city.name}</CardTitle>
 					<CancelFontIcon

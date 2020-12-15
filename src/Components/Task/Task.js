@@ -3,9 +3,6 @@ import "./style.css";
 import { TextField, Checkbox, Button, DeleteSVGIcon } from "react-md";
 
 const Task = (props) => {
-
-	console.log(Checkbox);
-
 	return (
 		<div class="tasks-container">
 			<div className="checklist-container">
@@ -14,7 +11,7 @@ const Task = (props) => {
 					onChange={(e) =>
 						props.onUpdate(props.index, e.target.checked, props.description)
 					}
-					title='Mark as done!'
+					title="Mark as done!"
 				></Checkbox>
 				<TextField
 					className="input-task"

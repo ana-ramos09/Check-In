@@ -10,3 +10,40 @@
     color: #212121;
 
 }
+
+/* Dialog Basemaps */
+
+#basemap-dialog-toggle {
+    color: whitesmoke;
+    font-size: 1.6em;
+    width: 330px;
+    height: 70px;
+    margin-top: 20px;
+    margin-right: 280px;
+}
+
+.basemap-symbol {
+    width: 40px;
+    height: 40px;
+}
+
+#dialog-basemaps {
+    width: 300px;
+}
+
+.dialog-header {
+    border-bottom: 2px solid rgb(231, 141, 141);
+}
+
+#dialog-title-basemap{
+    font-size: 1.5em;
+}
+
+#dialog-close-basemap {
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+#dialog-close-basemap:hover {
+    color:  rgb(231, 141, 141);
+}

@@ -1,4 +1,6 @@
 body, #root {
+  /* display: flex; */
+  /* flex: 1; */
   height: 100vh;
   width: 100vw;
   margin: 0px;
@@ -17,7 +19,7 @@ body, #root {
   display: flex;
   flex-direction: column;
   /* background-color: #212121; */
-  background: linear-gradient(217deg, #212121, #394d57);
+  background: linear-gradient(217deg, #080808, #2e1c1c, #754b4b);
   height: 100vh;
 }
 
@@ -47,7 +49,8 @@ body, #root {
   display: flex;
   width: 40%;
   height: 550px;
-  border: 3px solid rgb(231, 141, 141);
+  border: 3px solid rgba(231, 141, 141, 0.8);
+  background-color: #2b2121c5;
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
@@ -59,8 +62,8 @@ body, #root {
 .map-container {
   width: 50%;
   height: 550px;
-  border: 3px solid rgb(231, 141, 141);
-  /* background-image: url('./images/street-view.png'); */
+  border: 3px solid rgba(231, 141, 141, 0.8);
+  background-color: #2b2121c5;
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -68,6 +71,7 @@ body, #root {
 
 .AppBar-header {
   background: linear-gradient(217deg, #FF5252, #e78d8d, #FFCDD2);
+  color: #263238;
 }
 
 .options-container {
@@ -75,4 +79,10 @@ body, #root {
   /* border: 3px solid yellow; */
   flex-direction: row;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    background-color: lightgreen;
+  }
 }

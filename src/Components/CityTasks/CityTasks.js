@@ -11,19 +11,19 @@ import {
 	editTask,
 	refreshList,
 	loadList,
+	uploadCoordenates,
 } from "../../Store/Actions";
 import {
 	Card,
 	CardHeader,
 	CardTitle,
 	CardContent,
-	Fieldset,
 	ArrowBackFontIcon,
 	Button,
 	FontIcon,
 	LocationOnFontIcon,
 	Text,
-	TextIconSpacing
+	TextIconSpacing,
 } from "react-md";
 
 const CityTasks = (props) => {
@@ -45,7 +45,20 @@ const CityTasks = (props) => {
 		dispatch(addTask());
 	};
 
+	const teste = () => {
+		console.log(JSON.stringify(cityDetail.tasks[0]));
+	};
+
 	const callSaveList = () => {
+		getAddress();
+
+		saveList(
+			cityDetail.name,
+			cityDetail.location,
+			cityDetail.tasks,
+			cityDetail.id
+		);
+
 		dispatch(
 			refreshList({
 				name: cityDetail.name,
@@ -54,13 +67,17 @@ const CityTasks = (props) => {
 				id: cityDetail.id,
 			})
 		);
-		saveList(
-			cityDetail.name,
-			cityDetail.location,
-			cityDetail.tasks,
-			cityDetail.id
-		);
 	};
+
+	// async function callSaveList() {
+	// 	let myPromise = new Promise(function (myResolve, myReject) {
+	// 		setTimeout(function () {
+	// 			myResolve(getAddress());
+	// 		}, 4000);
+	// 	});
+	// }
+
+	// callSaveList();
 
 	const loadLists = (id) => {
 		firestore
@@ -68,7 +85,6 @@ const CityTasks = (props) => {
 			.doc(id)
 			.get()
 			.then((resp) => {
-				// console.log(resp.data());
 				dispatch(
 					loadList({
 						...resp.data(),
@@ -84,21 +100,92 @@ const CityTasks = (props) => {
 		loadLists(id);
 	}, []);
 
+	// Function that receives a string and returns a formated string
+
+	const formatAddress = (string) => {
+		let newString = "";
+		newString = string.replaceAll(" ", "%20");
+		return newString;
+	};
+
+	// API Fetch and Dispatch the coordenates
+
+	const getAddress = () => {
+		const tasksArray = cityDetail.tasks;
+		const key = "pk.34265ea85c729b9303893e6c617ac9d0";
+		let address = "";
+		let url = "";
+		tasksArray.forEach((element, index) => {
+			address = formatAddress(element.description);
+			url = `https://us1.locationiq.com/v1/search.php?key=${key}&street=${address}&city=Sao%20Paulo&limit=50&format=json`;
+			fetch(url)
+				.then((resp) => resp.json())
+				.then((resp) => console.log(resp))
+				.then((resp) => [resp[0].lat, resp[0].lon])
+				.then((resp) => {
+					dispatch(uploadCoordenates({ coordinates: resp, index: index }));
+				})
+				.catch((error) => error);
+		});
+	};
+
+	const getCoordinates = (newUrl, index) => {
+		let addressObject = "";
+		fetch(newUrl)
+			.then((resp) => resp.json())
+			.then((resp) => {
+				resp.forEach((element, index) => {
+					if (element.display_name.includes(cityDetail.location)) {
+						addressObject = element;
+					}
+				});
+				console.log(addressObject);
+				return addressObject;
+			})
+			.then((resp) => {
+				dispatch(
+					uploadCoordenates({ coordinates: [resp.lat, resp.lon], index: index })
+				);
+			})
+			.catch((error) => error);
+	};
+
+	const getAddressTest = () => {
+		const newTasksArray = cityDetail.tasks;
+		const newKey = "pk.34265ea85c729b9303893e6c617ac9d0";
+		let newAddress = "";
+		let newUrl = "";
+		newTasksArray.forEach((element, index) => {
+			setTimeout(() => {
+				newAddress = formatAddress(element.description);
+				newUrl = `https://us1.locationiq.com/v1/search.php?key=${newKey}&street=${newAddress}&city=Sao%20Paulo&limit=50&format=json`;
+				getCoordinates(newUrl, index);
+			}, index * 4000);
+		});
+	};
+
 	return (
 		<Card className="card-component">
 			<CardHeader className="card-header">
 				<div className="header-wrapper">
 					<CardTitle className="card-title">{cityDetail.name}</CardTitle>
 					<Link to="/">
-						<ArrowBackFontIcon className="card-back" title="Go Back"></ArrowBackFontIcon>
+						<ArrowBackFontIcon
+							className="card-back"
+							title="Go Back"
+						></ArrowBackFontIcon>
 					</Link>
 				</div>
 			</CardHeader>
+			<button onClick={getAddressTest}>wwwwwwwwwwwwwwwwwwwwwwww</button>
 			<CardContent className="card-subheader">
 				<div className="location-wrapper">
 					<div className="location-container">
-						<LocationOnFontIcon className="card-location-icon" title="Location" />
-						<Text className="card-location" >{cityDetail.location}</Text>
+						<LocationOnFontIcon
+							className="card-location-icon"
+							title="Location"
+						/>
+						<Text className="card-location">{cityDetail.location}</Text>
 					</div>
 					<div className="location-button-container">
 						<Button
@@ -107,7 +194,10 @@ const CityTasks = (props) => {
 							className="add-task-button"
 							onClick={addPoint}
 							title="Add Task"
-						><TextIconSpacing icon={<FontIcon>add</FontIcon>}>Task</TextIconSpacing>
+						>
+							<TextIconSpacing icon={<FontIcon>add</FontIcon>}>
+								Task
+							</TextIconSpacing>
 						</Button>
 					</div>
 				</div>
@@ -130,8 +220,6 @@ const CityTasks = (props) => {
 				<div className="save-wrapper">
 					<Button
 						id="save-list-button"
-						// theme="error"
-						// themeType="outline"
 						className="city-tasks-save"
 						onClick={callSaveList}
 						title="Save List"

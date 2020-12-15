@@ -2,7 +2,6 @@ import React from "react";
 import CityCard from "../CityCard/CityCard.js";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteLists } from "../../Store/Actions";
-import { loadList } from "../../Store/Actions";
 
 const CityDashboard = () => {
 	const dispatch = useDispatch();

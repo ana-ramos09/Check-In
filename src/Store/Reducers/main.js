@@ -3,13 +3,13 @@ export const initialStateCities = {
 		{
 			name: "",
 			location: "",
-			tasks: [{ visited: false, description: "" }],
+			tasks: [{ visited: false, description: "", latitude: "", longitude: "" }],
 			id: "",
 		},
 		{
 			name: "",
 			location: "",
-			tasks: [{ visited: false, description: "" }],
+			tasks: [{ visited: false, description: "", latitude: "", longitude: "" }],
 			id: "",
 		},
 	],
@@ -32,7 +32,7 @@ const mainReducer = (state = initialStateCities, action) => {
 				...state,
 				cities: state.cities.map((city) => {
 					if (city.id === action.payload.id) {
-						return action.payload
+						return action.payload;
 					} else {
 						return city;
 					}

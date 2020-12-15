@@ -3,7 +3,7 @@
     flex-direction: column;
     border-radius: 10px;
     background-color: rgb(175, 188, 204);
-    width: 300px;
+    width: 90%;
     flex: 1; 
 }
 
@@ -28,13 +28,14 @@
     flex-direction: row;
     justify-content: space-between;
     height: 40px;
+    border-bottom: 1.5px solid #E57373;
     transition: border 1s;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     padding: 0px 8px 0px 8px;
 }
 
 .header-wrapper:hover {
-    border-bottom: 1.5px solid #E57373;
+    border-bottom: 1.5px solid #e6baba;
 }
 
 .card-title, 
@@ -67,19 +68,28 @@
     padding-top: 8px;
 }
 
+.teste {
+    color: whitesmoke;
+}
+
 .location-button-container {
     padding-left: 30px;
 }
 
 .add-task-button {
-    width: 75px;
-    height: 40px;
-    transition: background-color 1s;
+    width: 80px;
+    height: 35px;
+    /* background-color: #212121; */
+    border-radius: 15px;
+    transition: color 1s;
+    transition: border-radius 1s;
 }
 
 .add-task-button:hover {
     background-color: #212121;
-    border-radius: 25px;
+    border-radius: 35px;
+    color: whitesmoke;
+    opacity: 0.8; 
 }
 
 .tasks-container-city-tasks {
@@ -93,6 +103,7 @@
     align-items: center;
     width: 100%;
     height: 60px;
+    /* border: 1px solid yellow; */
 }
 
 .city-tasks-save {
@@ -101,15 +112,24 @@
     border: 1.5px solid #E57373;
     color: whitesmoke;
     margin: 0px 8px 0px 8px;
+    transition: background-color 1s;
 }
 
 .city-tasks-save:hover {
-    border: 2.5px solid #E57373;
+    /* border: none; */
     color: whitesmoke;
+    background-color: rgb(20, 20, 20);
     padding: 0px 8px 0px 8px;
 }
 
 .city-tasks-save > a {
     color: whitesmoke;
+    width: 100%;
 }
+
+@media only screen and (max-width: 900px) {
+    .city-tasks {
+        min-width: 40%;
+    }
+  }
 

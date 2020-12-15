@@ -3,18 +3,27 @@ import olMap from "ol/Map";
 import olView from "ol/View";
 import olTile from "ol/layer/Tile";
 import olSource from "ol/source/OSM";
-import olGroup from "ol/layer/Group";
 import {
 	DragRotateAndZoom,
 	defaults as defaultInteractions,
 } from "ol/interaction";
+import { Vector as VectorSource } from "ol/source";
+// import VectorLayer from "ol/layer/Vector";
+import { Feature } from "ol";
+import { Icon, Circle, Fill, Style } from "ol/style";
+import Point from "ol/geom/Point";
 import "ol/ol.css";
 import "./style.css";
+import { toLonLat, fromLonLat } from "ol/proj";
 import { useSelector } from "react-redux";
-import { set } from "ol/transform";
+import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
+import TileJSON from "ol/source/TileJSON";
+import pointIcon from "../../images/locationFinal.png";
+import MultiPoint from "ol/geom/MultiPoint";
 
 const Map = () => {
 	const olState = useSelector((state) => state.ol.mapType);
+	const cityDetail = useSelector((state) => state.app.cityDetail);
 
 	const mapRef = useRef();
 
@@ -22,6 +31,7 @@ const Map = () => {
 	const [st, setSt] = useState();
 	const [te, setTe] = useState();
 	const [wa, setWa] = useState();
+	const [pointslayer, setPointslayer] = useState();
 
 	const initialMap = () => {
 		const initialMap = new olMap({
@@ -39,6 +49,7 @@ const Map = () => {
 			}),
 		});
 
+		// Basemaps
 		const openStreetMapHumanitarian = new olTile({
 			source: new olSource({
 				url: "https://{a-c}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
@@ -71,19 +82,54 @@ const Map = () => {
 			title: "StamentWatercolor",
 		});
 
-		setHu(openStreetMapHumanitarian);
-		setSt(openStreetMapStandard);
-		setTe(stamentTerrain);
-		setWa(stamentWatercolor);
+		// Points
+		// to add only one point
+
+		const taskPoints = new VectorLayer({
+			source: new VectorSource({
+				features: cityDetail.tasks.map((item, index) => {
+					return new Feature(
+						new Point(fromLonLat([item.latitude, item.longitude]))
+					);
+				}),
+			}),
+			style: new Style({
+				image: new Icon({
+					anchor: [0.5, 46],
+					anchorXUnits: "fraction",
+					anchorYUnits: "pixels",
+					src: pointIcon,
+				}),
+			}),
+			visible: true,
+			title: "TasksPoints",
+		});
+
+		// Refresh the point when the state refreshes
+
+		const refreshTaskPoints = () => {};
 
 		initialMap.addLayer(openStreetMapHumanitarian);
 		initialMap.addLayer(openStreetMapStandard);
 		initialMap.addLayer(stamentTerrain);
 		initialMap.addLayer(stamentWatercolor);
+		initialMap.addLayer(taskPoints);
+
+		setHu(openStreetMapHumanitarian);
+		setSt(openStreetMapStandard);
+		setTe(stamentTerrain);
+		setWa(stamentWatercolor);
+		setPointslayer(taskPoints);
 
 		// On Method - Listen for a certain type of element/object
 		initialMap.on("click", function (e) {
 			console.log(e.coordinate);
+		});
+
+		initialMap.on("click", function (e) {
+			console.log(e.coordinate);
+			let geogCoord = toLonLat(e.coordinate);
+			console.log(geogCoord);
 		});
 
 		initialMap.setTarget(mapRef.current);
@@ -101,15 +147,12 @@ const Map = () => {
 	}, []);
 
 	useEffect(() => {
-		if (
-			hu !== undefined &&
-			st !== undefined &&
-			te !== undefined &&
-			wa !== undefined
-		) {
+		if (hu !== undefined && te !== undefined && wa !== undefined) {
 			refresh();
 		}
 	}, [olState]);
+
+	useEffect(() => {}, [cityDetail]);
 
 	return <div className="map-container" ref={mapRef}></div>;
 };

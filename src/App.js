@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import AddCityCard from "./Components/AddCityCard/AddCityCard.js";
+import AddCityCardModal from "./Components/AddCityCard/AddCityCardModal.js";
 import Map from "./Components/Map/Map.js";
 import AddLayers from "./Components/ToggleMapLayers/ToggleMapLayers.js";
 import { useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ import { firestore } from "./firebaseUtils.js";
 import { loadLists } from "./Store/Actions/index.js";
 import { routes } from "./Routes.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AppBar, AppBarNav, AppBarTitle, MenuSVGIcon } from "react-md";
+import { AppBar, AppBarNav, AppBarTitle } from "react-md";
 
 function App() {
 	const dispatch = useDispatch();
@@ -32,22 +32,17 @@ function App() {
 
 	return (
 		<div className="App">
-			<AppBar
-				className="AppBar-header">
-				<AppBarNav>
-					<MenuSVGIcon></MenuSVGIcon>	
-				</AppBarNav>
+			<AppBar className="AppBar-header">
 				<AppBarTitle>Check In</AppBarTitle>
 			</AppBar>
-
 			<div className="options-container">
-				<AddCityCard
+				<AddCityCardModal
 					listName={listName}
 					setListName={setListName}
 					listLocation={listLocation}
 					setListlocation={setListlocation}
 					updateLists={loadAllLists}
-				/>
+				></AddCityCardModal>
 				<AddLayers></AddLayers>
 			</div>
 			<div className="main-container">

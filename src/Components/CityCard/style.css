@@ -128,6 +128,7 @@
     width: 30px;
     height: 30px;
 }
+
 .main-wrapper-city-card {
     display: flex;
     flex-direction: row;
@@ -145,6 +146,11 @@
     border: 1px solid black;
 }
 
+.go-to-city-tasks:hover {
+    display: flex;
+    border: 1px solid black;
+}
+
 .delete-city-card, 
 .list-icon {
     cursor: pointer;
@@ -157,15 +163,23 @@
     opacity: 0.8;
 }
 
-.delete-city-card, 
 .list-icon, 
 .location-icon-city-card:hover {
     color: #263238;
     opacity: 0.8;
 }
 
-.card-header,.card-main, .card-footer {
+.delete-city-card:hover {
+    color: #121516;
+    opacity: 0.8;  
+}
+
+.card-header-city-card,.card-main, .card-footer {
     padding: 2px;
+}
+
+.card-header-city-card {
+    border-bottom: 3.5px solid  #ec6c60;
 }
 
 .divider {

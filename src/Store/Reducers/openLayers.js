@@ -1,5 +1,5 @@
 export const openLayersState = {
-	mapType: "StamentWatercolor",
+	mapType: "TasksPoints",
 };
 
 const openLayersReducer = (state = openLayersState, action) => {
