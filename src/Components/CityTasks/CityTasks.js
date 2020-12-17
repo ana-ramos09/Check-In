@@ -45,39 +45,28 @@ const CityTasks = (props) => {
 		dispatch(addTask());
 	};
 
-	const teste = () => {
-		console.log(JSON.stringify(cityDetail.tasks[0]));
+	const callSaveList = async () => {
+		try {
+			await getAddress();
+
+			saveList(
+				cityDetail.name,
+				cityDetail.location,
+				cityDetail.tasks,
+				cityDetail.id
+			);
+			dispatch(
+				refreshList({
+					name: cityDetail.name,
+					location: cityDetail.location,
+					tasks: cityDetail.tasks,
+					id: cityDetail.id,
+				})
+			);
+		} catch {
+			console.log("Deu ruim!");
+		}
 	};
-
-	const callSaveList = () => {
-		getAddress();
-
-		saveList(
-			cityDetail.name,
-			cityDetail.location,
-			cityDetail.tasks,
-			cityDetail.id
-		);
-
-		dispatch(
-			refreshList({
-				name: cityDetail.name,
-				location: cityDetail.location,
-				tasks: cityDetail.tasks,
-				id: cityDetail.id,
-			})
-		);
-	};
-
-	// async function callSaveList() {
-	// 	let myPromise = new Promise(function (myResolve, myReject) {
-	// 		setTimeout(function () {
-	// 			myResolve(getAddress());
-	// 		}, 4000);
-	// 	});
-	// }
-
-	// callSaveList();
 
 	const loadLists = (id) => {
 		firestore
@@ -110,25 +99,6 @@ const CityTasks = (props) => {
 
 	// API Fetch and Dispatch the coordenates
 
-	const getAddress = () => {
-		const tasksArray = cityDetail.tasks;
-		const key = "pk.34265ea85c729b9303893e6c617ac9d0";
-		let address = "";
-		let url = "";
-		tasksArray.forEach((element, index) => {
-			address = formatAddress(element.description);
-			url = `https://us1.locationiq.com/v1/search.php?key=${key}&street=${address}&city=Sao%20Paulo&limit=50&format=json`;
-			fetch(url)
-				.then((resp) => resp.json())
-				.then((resp) => console.log(resp))
-				.then((resp) => [resp[0].lat, resp[0].lon])
-				.then((resp) => {
-					dispatch(uploadCoordenates({ coordinates: resp, index: index }));
-				})
-				.catch((error) => error);
-		});
-	};
-
 	const getCoordinates = (newUrl, index) => {
 		let addressObject = "";
 		fetch(newUrl)
@@ -150,7 +120,7 @@ const CityTasks = (props) => {
 			.catch((error) => error);
 	};
 
-	const getAddressTest = () => {
+	const getAddress = () => {
 		const newTasksArray = cityDetail.tasks;
 		const newKey = "pk.34265ea85c729b9303893e6c617ac9d0";
 		let newAddress = "";
@@ -158,9 +128,11 @@ const CityTasks = (props) => {
 		newTasksArray.forEach((element, index) => {
 			setTimeout(() => {
 				newAddress = formatAddress(element.description);
-				newUrl = `https://us1.locationiq.com/v1/search.php?key=${newKey}&street=${newAddress}&city=Sao%20Paulo&limit=50&format=json`;
+				newUrl = `https://us1.locationiq.com/v1/search.php?key=${newKey}&street=${newAddress}&city=${formatAddress(
+					cityDetail.location
+				)}&limit=50&format=json`;
 				getCoordinates(newUrl, index);
-			}, index * 4000);
+			}, index * 3700);
 		});
 	};
 
@@ -177,7 +149,7 @@ const CityTasks = (props) => {
 					</Link>
 				</div>
 			</CardHeader>
-			<button onClick={getAddressTest}>wwwwwwwwwwwwwwwwwwwwwwww</button>
+			{/* <button onClick={getAddressTest}>wwwwwwwwwwwwwwwwwwwwwwww</button> */}
 			<CardContent className="card-subheader">
 				<div className="location-wrapper">
 					<div className="location-container">
@@ -224,7 +196,8 @@ const CityTasks = (props) => {
 						onClick={callSaveList}
 						title="Save List"
 					>
-						<Link to="/">SAVE</Link>
+						{/* <Link to="/"></Link> */}
+						SAVE
 					</Button>
 				</div>
 			</CardContent>

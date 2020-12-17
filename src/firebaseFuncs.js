@@ -6,7 +6,14 @@ export const createList = (name, location) => {
 		.add({
 			name: name,
 			location: location,
-			tasks: [],
+			tasks: [
+				{
+					visited: false,
+					description: "",
+					latitude: "",
+					longitude: "",
+				},
+			],
 		})
 		.then(() => {
 			console.log("List Created!");

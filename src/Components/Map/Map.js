@@ -8,7 +8,6 @@ import {
 	defaults as defaultInteractions,
 } from "ol/interaction";
 import { Vector as VectorSource } from "ol/source";
-// import VectorLayer from "ol/layer/Vector";
 import { Feature } from "ol";
 import { Icon, Circle, Fill, Style } from "ol/style";
 import Point from "ol/geom/Point";
@@ -89,7 +88,7 @@ const Map = () => {
 			source: new VectorSource({
 				features: cityDetail.tasks.map((item, index) => {
 					return new Feature(
-						new Point(fromLonLat([item.latitude, item.longitude]))
+						new Point(fromLonLat([item.longitude, item.latitude]))
 					);
 				}),
 			}),
@@ -107,7 +106,17 @@ const Map = () => {
 
 		// Refresh the point when the state refreshes
 
-		const refreshTaskPoints = () => {};
+		// const removeTaskPoints = () => {
+		// 	let getLayers = taskPoints;
+		// 	console.log(getLayers);
+		// 	return getLayers.forEach((layer) => {
+		// 		if (layer.get(layer.title) === "TasksPoints") {
+		// 			getLayers.removeLayer(layer);
+		// 		}
+		// 	});
+		// };
+
+		// removeTaskPoints();
 
 		initialMap.addLayer(openStreetMapHumanitarian);
 		initialMap.addLayer(openStreetMapStandard);
@@ -123,11 +132,6 @@ const Map = () => {
 
 		// On Method - Listen for a certain type of element/object
 		initialMap.on("click", function (e) {
-			console.log(e.coordinate);
-		});
-
-		initialMap.on("click", function (e) {
-			console.log(e.coordinate);
 			let geogCoord = toLonLat(e.coordinate);
 			console.log(geogCoord);
 		});
@@ -142,6 +146,18 @@ const Map = () => {
 		wa.setVisible(olState === "StamentWatercolor");
 	};
 
+	const updatePoints = () => {
+		pointslayer.setSource(
+			new VectorSource({
+				features: cityDetail.tasks.map((item, index) => {
+					return new Feature(
+						new Point(fromLonLat([item.longitude, item.latitude]))
+					);
+				}),
+			})
+		);
+	};
+
 	useEffect(() => {
 		initialMap();
 	}, []);
@@ -152,7 +168,11 @@ const Map = () => {
 		}
 	}, [olState]);
 
-	useEffect(() => {}, [cityDetail]);
+	useEffect(() => {
+		if (pointslayer !== undefined) {
+			updatePoints();
+		}
+	}, [cityDetail]);
 
 	return <div className="map-container" ref={mapRef}></div>;
 };

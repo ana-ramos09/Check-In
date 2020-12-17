@@ -59,6 +59,7 @@ const ToggleMapLayers = (props) => {
 					<InputToggle
 						id="checkbox-1"
 						name="checkboxes"
+						checked={true}
 						type="radio"
 						icon={<CheckBoxSVGIcon />}
 						label="Standard Map"
@@ -67,6 +68,7 @@ const ToggleMapLayers = (props) => {
 					<InputToggle
 						id="checkbox-2"
 						name="checkboxes"
+						checked={false}
 						type="radio"
 						icon={<CheckBoxSVGIcon />}
 						label="Humanitarian Map"
@@ -75,6 +77,7 @@ const ToggleMapLayers = (props) => {
 					<InputToggle
 						id="checkbox-3"
 						name="checkboxes"
+						checked={false}
 						type="radio"
 						icon={<CheckBoxSVGIcon />}
 						label="Terrain Map"
@@ -83,6 +86,7 @@ const ToggleMapLayers = (props) => {
 					<InputToggle
 						id="checkbox-4"
 						name="checkboxes"
+						checked={false}
 						type="radio"
 						icon={<CheckBoxSVGIcon />}
 						label="Watercolor Map"
